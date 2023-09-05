@@ -57,6 +57,13 @@ def upload_video():
     """
         Scrapping to load video data to tiktok.
     """
+    profile_path = "C:\\Users\\Gilbert\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\qp71cu4y.Selenium"
+    options = FirefoxOptions()
+    options.profile = FirefoxProfile(profile_path)
+    driver = Firefox(options)
+    driver.get("https://www.tiktok.com/")
+    upload_button = driver.find_element(By.CLASS_NAME, "tiktok-1qup28j-DivUpload")
+    upload_button.click()
 
 
 def comment():
@@ -65,5 +72,5 @@ def comment():
     """
 
 
-login_to_tiktok()
+upload_video()
 
