@@ -23,6 +23,7 @@ def test_selenium():
     driver.close()
 
 
+# Not necesary can start session on tiktok in firefox profile
 def login_to_tiktok():
     """
         Scrapping to login to tiktok.
@@ -53,7 +54,7 @@ def login_to_tiktok():
     driver.close()
 
 
-def upload_video():
+def upload_video(caption):
     """
         Scrapping to load video data to tiktok.
     """
@@ -61,9 +62,19 @@ def upload_video():
     options = FirefoxOptions()
     options.profile = FirefoxProfile(profile_path)
     driver = Firefox(options)
-    driver.get("https://www.tiktok.com/")
-    upload_button = driver.find_element(By.CLASS_NAME, "tiktok-1qup28j-DivUpload")
-    upload_button.click()
+    try:
+        driver.get("https://www.tiktok.com/")
+        upload_button = driver.find_element(By.CLASS_NAME, "tiktok-1qup28j-DivUpload")
+        upload_button.click()
+        sleep(5)
+        form_frame = driver.find_element(By.TAG_NAME, "iframe")
+        driver.switch_to.frame(form_frame)
+        caption_textbox = driver.find_element(By.CLASS_NAME, "public-DraftEditor-content")
+        caption_textbox.click()
+        caption_textbox.send_keys(caption)
+    finally:
+        sleep(20)
+        driver.close()
 
 
 def comment():
@@ -72,5 +83,4 @@ def comment():
     """
 
 
-upload_video()
-
+upload_video("Some title")
