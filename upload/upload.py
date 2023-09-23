@@ -54,7 +54,7 @@ def login_to_tiktok():
     driver.close()
 
 
-def upload_video(caption):
+def upload_video(caption, video_path):
     """
         Scrapping to load video data to tiktok.
     """
@@ -72,8 +72,12 @@ def upload_video(caption):
         caption_textbox = driver.find_element(By.CLASS_NAME, "public-DraftEditor-content")
         caption_textbox.click()
         caption_textbox.send_keys(caption)
+        select_file_button = driver.find_element(By.CLASS_NAME, "css-1z070dx")
+        select_file_button.click()
+        upload_file_browser = driver.find_element(By.ID, "uploadFile")
+        upload_file_browser.send_keys(video_path)
     finally:
-        sleep(20)
+        sleep(2)
         driver.close()
 
 
@@ -83,4 +87,4 @@ def comment():
     """
 
 
-upload_video("Some title")
+upload_video("Some title", "")
