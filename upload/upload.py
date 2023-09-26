@@ -56,7 +56,3 @@ def comment():
     """
         Make default comment.
     """
-
-
-upload_video("C:\\Users\\Gilbert\\AppData\\Roaming\\Mozilla\\Firefox\\Profiles\\qp71cu4y.Selenium",
-             "Some title", '/my/path')
